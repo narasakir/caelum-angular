@@ -1,13 +1,14 @@
 # caelum-angular
 
-##Criar componentes com Angular
+## Criar componentes com Angular
 
-Passos para criar componentes: 
+**Passos para criar componentes:**
 
 1 - Criar 1 pasta para o componente dentro de APP
-2- Criar o componente
 
-´´´
+**2- Criar o componente**
+
+```
 // importando o modulo Component do Angular para usar o decorator
 import { Component } from "@angular/core" 
 
@@ -24,9 +25,9 @@ export class FotoComponent{
 
 }
 
-´´´
-Criando o módulo do componente
-´´´
+```
+**3- Criando o módulo do componente**
+```
 import { NgModule } from "@angular/core"; // Importando o NgModulo para criar um modulo do Angular
 import { FotoComponent } from "./foto.component"; // Importando o componente para criar um modulo do componente
     
@@ -40,10 +41,10 @@ export class FotoModule{
 
 }
 
-´´´
+```
 
-Importando o modulo para o app principal
-´´´
+**Importando o modulo para o app principal**
+```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -64,10 +65,11 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 
-´´´
+```
 
 
 
 
 3- Criar o Modulo do Componente
+
 
