@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import { FotoModule } from "./foto/foto.module"; //Importando o modulo
 import { AppComponent } from './app.component';
 
 
@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FotoModule //Importando o modulo
   ],
   providers: [],
   bootstrap: [AppComponent]
