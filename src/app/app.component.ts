@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
+import { Http } from "@angular/http";
 
 @Component({
   selector: 'app-root',
-  template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-
-    <header class="jumbotron">
-      <h1 class="text-center">{{titulo}}</h1>
-      </header>
-      <main class="container">
-        <foto url="./assets/img/lancha.jpg" titulo="Lancha top"></foto>
-      </main>
-  `,
+  templateUrl:'./app.component.html',
   styles: []
 })
 export class AppComponent {
   titulo = 'Caelumpic';
+  listaFotos = []
+  
+  //O Constructor é o primeiro a carregar
+  constructor(ajax: Http){ //cria um atributo do tipo Http direto no Http
+    // Solicita os dados da API pelo metodo get
+    ajax.get("http://localhost:3000/v1/fotos")
+        .subscribe(
+          resposta => {
+            this.listaFotos = resposta.json()
+          }
+        )
+  }
 }

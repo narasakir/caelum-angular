@@ -67,9 +67,99 @@ export class AppModule { }
 
 ```
 
+## Consumindo API 
+
+```
+import { Component } from '@angular/core';
+import { Http } from "@angular/http";
+
+@Component({
+  selector: 'app-root',
+  templateUrl:'./app.component.html',
+  styles: []
+})
+export class AppComponent {
+  titulo = 'Caelumpic';
+  listaFotos = []
+  
+  //O Constructor é o primeiro a carregar
+  constructor(ajax: Http){ //cria um atributo do tipo Http direto no Http
+    // Solicita os dados da API pelo metodo get
+    ajax.get("http://localhost:3000/v1/fotos")
+        .subscribe(
+          resposta => {
+            this.listaFotos = resposta.json()
+          }
+        )
+  }
+}
+
+```
+
+## Criando o Componente de Painel
+
+**painel.component.html**
+```
+<div class="card">
+    <div class="card-header">
+         {{titulo}}  <!--Recebendo o titulo por atributo-->
+    </div>
+    <div class="card-body">
+        <ng-content></ng-content> <!-- Preparando o componente para receber conteudo dentro dele -->
+    </div>
+</div>
+
+```
+
+**painel.component.ts**
+
+```
+import { Component, Input } from "@angular/core";
+@Component({
+    selector: 'painel',
+    templateUrl: './painel.component.html'
+})
+export class PainelComponent{
+    @Input() titulo
+}
+```
+**painel.module.ts**
+```
+import { NgModule } from "@angular/core";
+
+import { PainelComponent } from "./painel.component";
+@NgModule({
+    declarations: [ PainelComponent ],
+    exports: [ PainelComponent ]
+})
+
+export class PainelModule{
+}
+
+```
+
+**Atualizando o HTML do App** app.component.ts 
+
+```
+
+    <header class="jumbotron">
+        <h1 class="text-center">{{titulo}}</h1>
+    </header>
+
+    <main class="container">
+        <div class="row">
+
+            <!-- Fazendo o Loop do Painel de Fotos -->
+            <painel *ngFor="let foto of listaFotos" [titulo]="foto.titulo" class="col-md-4 ">
+                <foto [url]="foto.url" [titulo]="foto.titulo"></foto>
+            </painel>
+            
+        </div>
+    </main>
 
 
+```
 
-3- Criar o Modulo do Componente
+
 
 
