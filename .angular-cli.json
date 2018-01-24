@@ -17,7 +17,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "cp",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css"
@@ -60,8 +60,8 @@
       "spec": false
     },
     "component": {
-      "inlineStyle": true,
-      "inlineTemplate": true,
+      "inlineStyle": false,
+      "inlineTemplate": false,
       "spec": false
     },
     "directive": {

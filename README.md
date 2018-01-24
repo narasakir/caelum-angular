@@ -7,7 +7,7 @@
 1 - Criar 1 pasta para o componente dentro de APP
 
 **2- Criar o componente**
-
+**Obs: Atalho para criar componente:** ng generate component namecomponent / n g c namecomponent
 ```
 // importando o modulo Component do Angular para usar o decorator
 import { Component } from "@angular/core" 

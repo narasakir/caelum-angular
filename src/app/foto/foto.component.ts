@@ -12,5 +12,7 @@ export class FotoComponent{ //Criando a classe do componente e exportando para s
 
     @Input() titulo = ""
     @Input() url = ""
+             descricao = ""
+             _id
 
 }
