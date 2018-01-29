@@ -1,34 +1,56 @@
 <header class="jumbotron">
-    <h1 class="text-center">Cadastrar Fotos</h1>
-    <h3>{{foto.titulo}}</h3>
+    <h1 class="text-center">
+        Cadastrar fotos
+    </h1>
 </header>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-sm-7">
-            <form (ngSubmit)="salvar()">
-                <div class="form-group">
-                    <label for="titulo">Titulo</label>
-                    <input type="text" [(ngModel)]="foto.titulo" name="titulo" class="form-control" id="titulo" placeholder="Titulo" >
-                </div>
-                <div class="form-group">
-                    <label for="url">Url</label>
-                    <input type="text" [(ngModel)]="foto.url" name="url" class="form-control" id="url" placeholder="url">
-                </div>                
-                <div class="form-group">
-                    <label for="descricao">Descricao</label>
-                    <textarea class="form-control" [(ngModel)]="foto.descricao" name="descricao" id="descricao" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-
-                    <a [routerLink]="['']" class="btn btn-secondary">Voltar</a>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
+<main class="container">
+    <div *ngIf="mensagem" class="row">
+        <div class="col-sm-12">
+            <p class="alert alert-success">
+                {{mensagem}}
+            </p>
         </div>
-        <aside>
-            <painel titulo="{{foto.titulo}}">
+    </div>
+    <div class="row">
+        <form [formGroup]="formCadastro" class="col-sm-7" (ngSubmit)="salvar()">
+            <div class="form-group">
+                <label for="">Titulo*</label>
+                <input 
+                    formControlName="titulo"
+                    required
+                    [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control">
+                    
+                <span *ngIf="formCadastro.controls.titulo.errors">
+                    <span *ngIf="formCadastro.controls.titulo.errors.required && formCadastro.controls.titulo.touched" class="form-control alert-danger">
+                        Campo obrigatório
+                    </span>
+                    <span *ngIf="formCadastro.controls.titulo.errors.minlength && formCadastro.controls.titulo.touched" class="form-control alert-danger">
+                        Precisa ter pelo menos 3 caracteres
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="">Url*</label>
+                <input 
+                    formControlName="url"
+                    required [(ngModel)]="foto.url" name="url" type="text" class="form-control">
+                <span *ngIf="formCadastro.controls.url.invalid && formCadastro.controls.url.touched" class="form-control alert-danger">
+                    Campo obrigatório
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="">Descrição</label>
+                <textarea 
+                    formControlName="descricao"
+                    [(ngModel)]="foto.descricao" name="descricao" class="form-control"></textarea>
+            </div>
+            <a routerLink="" class="btn btn-secondary">Voltar</a>
+            <button [disabled]="formCadastro.invalid" class="btn btn-primary">Salvar</button>
+        </form>
+        <aside class="col-sm-5">
+            <painel titulo="{{foto.titulo}}" *ngIf="foto.url && foto.titulo">
                 <foto titulo="{{foto.titulo}}" url="{{foto.url}}"></foto>
             </painel>
         </aside>
     </div>
-</div>
+</main>

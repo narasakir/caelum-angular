@@ -1,17 +1,20 @@
 <header class="jumbotron">
-    <h1 class="text-center">{{titulo}}</h1>
+  <h1 class="text-center">{{titulo}}</h1>
 </header>
-
 <main class="container">
-    <div class="row mb-4">
-        <div class="col-12">
-            <a [routerLink]="['cadastro']" class="btn btn-primary">Nova Foto</a>
-        </div>
+  <div class="row mb-4">
+    <div class="col-sm-12">
+      <a routerLink="/cadastro" class="btn btn-primary">Nova foto</a>
     </div>
-    <div class="row">
-        <painel *ngFor="let foto of listaFotos" [titulo]="foto.titulo" class="col-md-4 ">
-            <foto [url]="foto.url" [titulo]="foto.titulo"></foto>
-            <button class="btn btn-danger" (click)="remover(foto)">Remover</button>
-        </painel>
-    </div>
+  </div>
+  <div class="row">
+    <painel *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}" class="col-md-2">
+      
+      <a [routerLink]="['/cadastro', foto._id]">
+        <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+      </a>
+
+      <button (click)="remover(foto)" class="btn btn-danger">Remover</button>
+    </painel>
+  </div>
 </main>
